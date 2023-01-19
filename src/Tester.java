@@ -86,7 +86,11 @@ public class Tester {
                     if ((results[i].endsWith("!\n") ||
                             results[i].endsWith("?\n") ||
                             results[i].endsWith(".\n"))) {
-                        if ((results[i].contains(", ") || results[i].contains("! ") || results[i].contains("? ") || results[i].contains(". ") || results[i].contains(",\n")
+                        if (!results[i].contains(", ") && !results[i].contains("? ") && !results[i].contains("! ")
+                        && !results[i].contains("!") && !results[i].contains(",") && !results[i].contains("?")){
+                            sb.append(results[i]);
+                        }
+                        else if ((results[i].contains(", ") || results[i].contains("! ") || results[i].contains("? ") || results[i].contains(". ") || results[i].contains(",\n")
 //                                || results[i].contains("!\n")|| results[i].contains("?\n")|| results[i].contains(".\n"))
                                 && ((!results[i].contains(" ,") || !results[i].contains(" !") || !results[i].contains(" ?") || !results[i].contains(" .")
                                 || !results[i].startsWith("!")|| !results[i].startsWith("?")|| !results[i].startsWith(".")|| !results[i].startsWith(",")
@@ -95,8 +99,9 @@ public class Tester {
                         }
                     }
                 }
+
                 String decode = sb.toString();
-//                System.out.println(decode);
+                System.out.println(decode);
 
 
 //--------------------------------------------------------------------------------------------------------------------------

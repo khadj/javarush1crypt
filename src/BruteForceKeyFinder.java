@@ -81,12 +81,35 @@ class BruteForceKeyFinder {
 Вытаскиваю наиболее, подходящий вариант, по условию
 */
 
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < results.length; i++) {
+//            if ((results[i].endsWith("!\n") ||
+//                    results[i].endsWith("?\n") ||
+//                    results[i].endsWith(".\n"))) {
+//                if ((results[i].contains(", ") || results[i].contains("! ") || results[i].contains("? ") || results[i].contains(". ") || results[i].contains(",\n")
+////                                || results[i].contains("!\n")|| results[i].contains("?\n")|| results[i].contains(".\n"))
+//                        && ((!results[i].contains(" ,") || !results[i].contains(" !") || !results[i].contains(" ?") || !results[i].contains(" .")
+//                        || !results[i].startsWith("!")|| !results[i].startsWith("?")|| !results[i].startsWith(".")|| !results[i].startsWith(",")
+//                        || !results[i].contains("\n!")|| !results[i].contains("\n.")|| !results[i].contains("\n,")|| !results[i].contains("\n?"))))) {
+//                    sb.append(results[i]);
+//                }
+//            }
+//        }
+//        String decode = sb.toString();
+////                System.out.println(decode);
+
+
+
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < results.length; i++) {
             if ((results[i].endsWith("!\n") ||
                     results[i].endsWith("?\n") ||
                     results[i].endsWith(".\n"))) {
-                if ((results[i].contains(", ") || results[i].contains("! ") || results[i].contains("? ") || results[i].contains(". ") || results[i].contains(",\n")
+                if (!results[i].contains(", ") && !results[i].contains("? ") && !results[i].contains("! ")
+                        && !results[i].contains("!") && !results[i].contains(",") && !results[i].contains("?")){
+                    sb.append(results[i]);
+                }
+                else if ((results[i].contains(", ") || results[i].contains("! ") || results[i].contains("? ") || results[i].contains(". ") || results[i].contains(",\n")
 //                                || results[i].contains("!\n")|| results[i].contains("?\n")|| results[i].contains(".\n"))
                         && ((!results[i].contains(" ,") || !results[i].contains(" !") || !results[i].contains(" ?") || !results[i].contains(" .")
                         || !results[i].startsWith("!")|| !results[i].startsWith("?")|| !results[i].startsWith(".")|| !results[i].startsWith(",")
@@ -95,8 +118,12 @@ class BruteForceKeyFinder {
                 }
             }
         }
+
         String decode = sb.toString();
-//                System.out.println(decode);
+        System.out.println(decode);
+
+
+
 
 
 //--------------------------------------------------------------------------------------------------------------------------
