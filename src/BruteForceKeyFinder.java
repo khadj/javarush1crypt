@@ -6,7 +6,7 @@ class BruteForceKeyFinder {
 
     static void bruteForceForKey(String cipherText) throws IOException {
 //      System.out.println("Исходный текст: " + textFromPlainFile);
-        Character[] abc = InitClass.getAbc();
+        char[] abc = InitClass.getAbc();
         StringBuilder stringBuilder = new StringBuilder();
         char[] charArray = InitClass.initTextPlain(cipherText);
 
@@ -18,22 +18,42 @@ class BruteForceKeyFinder {
         int key = 0;
         String[] varsOfDecryptText = new String[abc.length];
 
+//        while (key < abc.length) {
+//            for (char c : charArray) {
+//                for (int j = 0; j < abc.length; j++) {
+//                    if (abc[j].toString().equalsIgnoreCase(String.valueOf(c))) {
+//                        try {
+//                            stringBuilder.append(abc[j + key]);
+//                        } catch (ArrayIndexOutOfBoundsException e) {
+//                            stringBuilder.append(abc[j - abc.length + key]);
+//                        }
+//                    }
+//                    varsOfDecryptText[key] = stringBuilder.toString();
+//                }
+//            }
+//            key++;
+//        }
         while (key < abc.length) {
-            for (char c : charArray) {
+            for (int i = 0; i < charArray.length; i++) {
+                if (charArray[i] == '\n'){
+                    stringBuilder.append(charArray[i]);
+                }
                 for (int j = 0; j < abc.length; j++) {
-                    if (abc[j].toString().equalsIgnoreCase(String.valueOf(c))) {
+                    if (abc[j]==charArray[i]) {
                         try {
                             stringBuilder.append(abc[j + key]);
-                        } catch (ArrayIndexOutOfBoundsException e) {
+                        }
+                        catch (ArrayIndexOutOfBoundsException e) {
                             stringBuilder.append(abc[j - abc.length + key]);
                         }
                     }
-                    varsOfDecryptText[key] = stringBuilder.toString();
                 }
             }
+            varsOfDecryptText[key] = stringBuilder.toString();
             key++;
         }
 
+//        System.out.println(Arrays.toString(varsOfDecryptText));
 
 //--------------------------------------------------------------------------------------------------------------------------
 
@@ -53,6 +73,7 @@ class BruteForceKeyFinder {
             results[count] = last.substring(i, encText.length() + i);
             count++;
         }
+//        System.out.println(Arrays.toString(results));
 //--------------------------------------------------------------------------------------------------------------------------
 
 
@@ -62,17 +83,22 @@ class BruteForceKeyFinder {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < results.length; i++) {
-            if ((results[i].endsWith("!") ||
-                    results[i].endsWith("?") ||
-                    results[i].endsWith("."))) {
-                if ((results[i].contains(", ") || results[i].contains("! ") || results[i].contains("? ") || results[i].contains(". "))
-                        && ((!results[i].contains(" ,") || !results[i].contains(" !") || !results[i].contains(" ?") || !results[i].contains(" .")))) {
+            if ((results[i].endsWith("!\n") ||
+                    results[i].endsWith("?\n") ||
+                    results[i].endsWith(".\n"))) {
+                if ((results[i].contains(", ") || results[i].contains("! ") || results[i].contains("? ") || results[i].contains(". ") || results[i].contains(",\n")
+//                                || results[i].contains("!\n")|| results[i].contains("?\n")|| results[i].contains(".\n"))
+                        && ((!results[i].contains(" ,") || !results[i].contains(" !") || !results[i].contains(" ?") || !results[i].contains(" .")
+                        || !results[i].startsWith("!")|| !results[i].startsWith("?")|| !results[i].startsWith(".")|| !results[i].startsWith(",")
+                        || !results[i].contains("\n!")|| !results[i].contains("\n.")|| !results[i].contains("\n,")|| !results[i].contains("\n?"))))) {
                     sb.append(results[i]);
                 }
             }
         }
         String decode = sb.toString();
-//      System.out.println(decode);
+//                System.out.println(decode);
+
+
 //--------------------------------------------------------------------------------------------------------------------------
 
 

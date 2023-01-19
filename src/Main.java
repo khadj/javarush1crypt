@@ -1,8 +1,10 @@
 import java.io.IOException;
 import java.util.Scanner;
 /*
-C:\Users\AcerNitro5\Desktop\Javarush\JavaRushProject1\textPlain.txt         -       Исходный текст
-C:\Users\AcerNitro5\Desktop\Javarush\JavaRushProject1\textCipher.txt        -       Зашифрованный текст
+C:\Users\AcerNitro5\Desktop\JavaRushProject1\textPlain.txt
+-       Исходный текст
+C:\Users\AcerNitro5\Desktop\JavaRushProject1\textCipher.txt
+-       Зашифрованный текст
  */
 
 public class Main {
